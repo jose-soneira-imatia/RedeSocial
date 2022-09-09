@@ -26,6 +26,7 @@ public class TextPost extends Post {
         this.content = content;
     }
 
+
     @Override
     public String toString() {
         return "TextPost{" +

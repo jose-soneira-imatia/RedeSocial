@@ -32,11 +32,12 @@ public class VideoPost extends Post {
         this.duration = duration;
     }
 
+
     @Override
     public String toString() {
         return "VideoPost{" +
                 "quality='" + quality + '\'' +
                 ", duration=" + duration +
-                '}';
+                "} " + super.toString();
     }
 }

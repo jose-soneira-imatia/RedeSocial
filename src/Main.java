@@ -104,17 +104,15 @@ public class Main {
         while (true) {
             Scanner sc = new Scanner(System.in);
             System.out.println("------------------MENU------------------");
-            System.out.println("1--------------AddUser----------");
-            System.out.println("2--------------AddUserPost---------------");
-            System.out.println("3-------------UnfollowUser---------------");
-            System.out.println("4-------------StartFollowingAUser-----------");
-            System.out.println("5----------------Exit-----------------------");
+            System.out.println("1--------------AddUserPost---------------");
+            System.out.println("2-------------UnfollowUser---------------");
+            System.out.println("3-------------StartFollowingAUser-----------");
+            System.out.println("4----------------Exit-----------------------");
             option = sc.nextInt();
 
             switch (option) {
 
-                case 1 -> addUser();
-                case 2 -> addUserPost(userName);
+                case 1 -> addUserPost(userName);
             }
 
         }
@@ -126,15 +124,6 @@ public class Main {
         return usersList.stream().anyMatch(user -> user.getName().equals(name));
 
     }
-
-        private static void addUser() {
-            Scanner sc = new Scanner(System.in);
-            String name;
-            System.out.println("EnterUsername");
-            name = sc.nextLine();
-            User newUser = new User(name, Collections.emptyList(),Collections.emptyList());
-
-        }
 
         private static void addUserPost(User userName) {
             int option;
@@ -160,6 +149,41 @@ public class Main {
                 userName.getPostList().add(imageUs);
                 userName.getPostList().forEach(System.out::println);
             }
+
+            else if(option==2) {
+                Scanner newSc = new Scanner(System.in);
+                String text;
+                String quality;
+                int duration;
+                System.out.println("HaveSelectedVideoPost");
+                System.out.println("---------------------");
+                System.out.println("EnterTextFromTheVideo");
+                text = newSc.nextLine();
+                System.out.println("EnterVideoQuality");
+                quality = newSc.nextLine();
+                System.out.println("EnterVideoDuration");
+                duration = newSc.nextInt();
+                Post videoUs = new VideoPost(text,LocalDate.now(),quality,duration);
+                List<Post> postlistUser = new ArrayList<>();
+                userName.getPostList().add(videoUs);
+                userName.getPostList().forEach(System.out::println);
+            }
+            else if(option==3) {
+                Scanner newSc = new Scanner(System.in);
+                String text;
+                String content;
+                System.out.println("HaveSelectedTextPost");
+                System.out.println("---------------------");
+                System.out.println("EnterTextFromTheText");
+                text = newSc.nextLine();
+                System.out.println("EnterTextContent");
+                content = newSc.nextLine();
+                Post textUs = new TextPost(text,LocalDate.now(),content);
+                List<Post> postlistUser = new ArrayList<>();
+                userName.getPostList().add(textUs);
+                userName.getPostList().forEach(System.out::println);
+            }
+
 
         }
 

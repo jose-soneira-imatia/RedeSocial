@@ -1,12 +1,12 @@
-import java.util.Date;
+import java.time.LocalDate;
 
 public class Comment {
 
     private String text;
-    private Date commentDate;
+    private LocalDate commentDate;
     private User author;
 
-    public Comment(String text, Date commentDate, User author) {
+    public Comment(String text, LocalDate commentDate, User author) {
         this.text = text;
         this.commentDate = commentDate;
         this.author = author;
@@ -20,11 +20,11 @@ public class Comment {
         this.text = text;
     }
 
-    public Date getCommentDate() {
+    public LocalDate getCommentDate() {
         return commentDate;
     }
 
-    public void setCommentDate(Date commentDate) {
+    public void setCommentDate(LocalDate commentDate) {
         this.commentDate = commentDate;
     }
 

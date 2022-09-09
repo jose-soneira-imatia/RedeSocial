@@ -1,20 +1,26 @@
+import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
 public class Post {
     private String text;
-    private Date postDate;
+    private LocalDate postDate;
     private List<Comment> commentList;
 
-    public Post(String text, Date postDate) {
+    public Post(String text, LocalDate postDate) {
         this.text = text;
         this.postDate = postDate;
     }
 
-    public Post(String text, Date postDate, List<Comment> commentList) {
+    public Post(String text, LocalDate postDate, List<Comment> commentList) {
         this.text = text;
         this.postDate = postDate;
-        this.commentList = commentList;
+        this.commentList = new ArrayList<>();
+    }
+
+    public Post() {
+
     }
 
     public String getText() {
@@ -25,11 +31,11 @@ public class Post {
         this.text = text;
     }
 
-    public Date getPostDate() {
+    public LocalDate getPostDate() {
         return postDate;
     }
 
-    public void setPostDate(Date postDate) {
+    public void setPostDate(LocalDate postDate) {
         this.postDate = postDate;
     }
 

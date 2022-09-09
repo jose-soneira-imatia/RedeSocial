@@ -1,4 +1,5 @@
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class User {
@@ -7,14 +8,16 @@ public class User {
     private List<User> friendList;
 
 
-    public User() {
+    public User(String name) {
+        this.name = name;
     }
 
     public User(String name, List<Post> postList, List<User> friendList) {
         this.name = name;
-        this.postList = postList;
-        this.friendList = friendList;
+        this.postList = new ArrayList<>();
+        this.friendList = new ArrayList<>();
     }
+
 
     public String getName() {
         return name;

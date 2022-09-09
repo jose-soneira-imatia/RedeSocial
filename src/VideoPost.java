@@ -1,3 +1,4 @@
+import java.time.LocalDate;
 import java.util.Date;
 
 public class VideoPost extends Post {
@@ -5,11 +6,11 @@ public class VideoPost extends Post {
     private String quality;
     private int duration;
 
-    public VideoPost(String text, Date postDate) {
+    public VideoPost(String text, LocalDate postDate) {
         super(text, postDate);
     }
 
-    public VideoPost(String text, Date postDate, String quality, int duration) {
+    public VideoPost(String text, LocalDate postDate, String quality, int duration) {
         super(text, postDate);
         this.quality = quality;
         this.duration = duration;

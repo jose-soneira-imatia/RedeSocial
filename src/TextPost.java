@@ -30,6 +30,6 @@ public class TextPost extends Post {
     public String toString() {
         return "TextPost{" +
                 "content='" + content + '\'' +
-                '}';
+                "} " + super.toString();
     }
 }

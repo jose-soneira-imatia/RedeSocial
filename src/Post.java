@@ -6,7 +6,7 @@ import java.util.List;
 public class Post {
     private String text;
     private LocalDate postDate;
-    private List<Comment> commentList;
+    private List<Comment> commentList =  new ArrayList<>();
 
     public Post(String text, LocalDate postDate) {
         this.text = text;
@@ -16,7 +16,7 @@ public class Post {
     public Post(String text, LocalDate postDate, List<Comment> commentList) {
         this.text = text;
         this.postDate = postDate;
-        this.commentList = new ArrayList<>();
+        this.commentList = commentList;
     }
 
     public Post() {

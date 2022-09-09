@@ -2,7 +2,7 @@ import java.time.LocalDate;
 import java.util.Date;
 import java.util.List;
 
-public class ImagePost extends Post{
+public class ImagePost extends Post {
 
     private String dimension;
 
@@ -16,9 +16,9 @@ public class ImagePost extends Post{
         this.dimension = dimension;
     }
 
-    public <T> ImagePost(String text, LocalDate postDate, List<T> emptyList, String dimension) {
-        super();
-    }
+//    public <T> ImagePost(String text, LocalDate postDate, List<T> emptyList, String dimension) {
+//        super();
+//    }
 
     public String getDimension() {
         return dimension;
@@ -32,6 +32,6 @@ public class ImagePost extends Post{
     public String toString() {
         return "ImagePost{" +
                 "dimension='" + dimension + '\'' +
-                '}';
+                "} " + super.toString();
     }
 }

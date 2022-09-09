@@ -1,15 +1,17 @@
 import java.time.LocalDate;
 import java.util.ArrayList;
 
+import java.util.Collections;
 import java.util.List;
 import java.util.Scanner;
 
 public class Main {
 
-    static User user;
+    static User defaultUser = new User("Tono", Collections.emptyList(),Collections.emptyList());
+    private static final List<User> usersList = new ArrayList<>();
     public static void main(String[] args) {
         //La lista de los usuarios que forman parte de la red social
-        List<User> usersList = new ArrayList<>();
+
         //Usuarios
         User pepe = new User("pepe");
         User manolita = new User("manolita");
@@ -30,7 +32,7 @@ public class Main {
         followedmanolita.add(diego);
 
         //post de pepe
-        Post imagpepe = new ImagePost("Selfie.jpg", LocalDate.of(2022, 5, 4), new ArrayList<Comment>(), "100*100");
+        Post imagpepe = new ImagePost("Selfie.jpg", LocalDate.of(2022, 5, 4), "100*100");
         Post textpepe = new TextPost("Hoxe subindo a Moa", LocalDate.of(2022, 4, 1), new ArrayList<Comment>(), "Hoy salí de acampada");
         List<Post> postlistpepe = new ArrayList<>();
         postlistpepe.add(imagpepe);
@@ -60,9 +62,43 @@ public class Main {
         usersList.add(sandra);
         usersList.add(juan);
 
+        int option;
 
-        //en el menú se llaman a las funcionalidades descritas en el pdf
+        while (true) {
+            Scanner sc = new Scanner(System.in);
+            System.out.println("------------------MENU------------------");
+            System.out.println("1--------------Login----------");
+            System.out.println("2--------------AddUser---------------");
+            System.out.println("3----------------Exit-----------------------");
+            option = sc.nextInt();
 
+            switch (option) {
+
+                case 1:
+                    System.out.println("UserName");
+                    String name = new Scanner(System.in).nextLine();
+                    if(loginVerification(name)){
+                        login(name);
+                    }else{
+                        System.out.println("The user is not registered");
+                    }
+                    break;
+                case 2:
+                    break;
+                case 3 :
+                        System.exit(0);
+            }
+
+        }
+
+    }
+
+    private static void login(String name) {
+        User userName = usersList.stream().filter(user -> user.getName().equals(name)).findAny().orElse(null);
+        userMenu(userName);
+    }
+
+    private static void userMenu(User userName) {
         int option;
 
         while (true) {
@@ -72,28 +108,35 @@ public class Main {
             System.out.println("2--------------AddUserPost---------------");
             System.out.println("3-------------UnfollowUser---------------");
             System.out.println("4-------------StartFollowingAUser-----------");
+            System.out.println("5----------------Exit-----------------------");
             option = sc.nextInt();
 
             switch (option) {
 
                 case 1 -> addUser();
-                case 2 -> addUserPost();
+                case 2 -> addUserPost(userName);
             }
 
         }
+
+
+    }
+
+    private static boolean loginVerification(String name) {
+        return usersList.stream().anyMatch(user -> user.getName().equals(name));
 
     }
 
         private static void addUser() {
             Scanner sc = new Scanner(System.in);
-            String nombre;
+            String name;
             System.out.println("EnterUsername");
-            nombre = sc.nextLine();
-            user = new User(nombre);
+            name = sc.nextLine();
+            User newUser = new User(name, Collections.emptyList(),Collections.emptyList());
 
         }
 
-        private static void addUserPost() {
+        private static void addUserPost(User userName) {
             int option;
             Scanner sc = new Scanner(System.in);
             System.out.println("SelectTheTypeOfPostYouWantToAdd");
@@ -112,12 +155,15 @@ public class Main {
                 text= newSc.nextLine();
                 System.out.println("EnterImageDimensions");
                 dimension= newSc.nextLine();
-                Post imageUs = new ImagePost(text,LocalDate.of(2022, 5, 4), new ArrayList<Comment>(), dimension);
+                Post imageUs = new ImagePost(text,LocalDate.now(),dimension);
                 List<Post> postlistUser = new ArrayList<>();
-                user.getPostList().add(imageUs);
+                userName.getPostList().add(imageUs);
+                userName.getPostList().forEach(System.out::println);
             }
 
         }
+
+
 
 
 
